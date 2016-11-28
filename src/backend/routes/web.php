@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index');
 ROute::get('/phpinfo', function() {
     return phpinfo();
 });
+
+
