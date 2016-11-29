@@ -17,5 +17,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-//TODO: move to api routes, figure out middlewear
 Route::get('/resume', 'HomeController@resume');
