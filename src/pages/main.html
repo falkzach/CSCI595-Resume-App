@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="A resume building webpage">
+  <meta name="author" content="Zachary Falkner">
+
+  <title>ResuME Builder</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href=".././css/style.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <ul class="w3-navbar w3-white w3-wide w3-padding-8 w3-card-2">
+    <li>
+      <a href="#home" class="w3-margin-left"><b> ResuME Builder </b> </a>
+    </li>
+    <!-- Float links to the right. Hide them on small screens -->
+    <li class="w3-right w3-hide-small">
+      <a href="#resume" class="w3-left"> Your Résumés </a>
+      <a href="#projects" class="w3-left"> Templates </a>
+      <a href="#about" class="w3-left"> About </a>
+      <a href="#contact" class="w3-left w3-margin-right"> Contact </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="./images/view.jpg" alt="Architecture" width="1500" height="800">
+
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge"><span class="w3-border w3-border-black w3-padding"> ResuME Builder </span></h1>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+
+  <!-- Project Section -->
+  <div class="w3-container w3-padding-32" id="resume">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> Your Résumés </h3>
+    <p>
+      You currently have no résumés built. Click Your Résumés to start building!
+    </p>
+  </div>
+
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> Templates </h3>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding"> Professional </div>
+        <img src="./images/professional.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding"> Simplistic </div>
+        <img src="./images/t1.png" alt="House" style="width:100%">
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> About </h3>
+    <p>
+      ResuME Builder is a tool that allows users to build out a master database of their work history,
+      education, qualifications, etc. They are then able to generate job specific résumés, cover
+      letter templates, and references. This is beneficial to those applying for various jobs
+      who have complex résumés which have to be tailored for each position.
+    </p>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-32" id="contact">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-12"> Contact </h3>
+    <div class="w3-row-padding w3-grayscale">
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <img src="./images/tobin.jpg" alt="Jane" style="width:100%">
+        <h3> Tobin Doe </h3>
+        <p class="w3-opacity"> CEO &amp; Founder </p>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <img src="./images/abby.jpg" alt="Jane" style="width:100%">
+        <h3> Jane Wambach </h3>
+        <p class="w3-opacity"> Software Engineer </p>
+      </div>
+    </div>
+
+    <p> Please get in touch with us for any questions you may have. </p>
+    <form action="form.asp" target="_blank">
+      <input class="w3-input" type="text" placeholder="Name" required name="Name">
+      <input class="w3-input w3-section" type="text" placeholder="Email" required name="Email">
+      <input class="w3-input w3-section" type="text" placeholder="Subject" required name="Subject">
+      <input class="w3-input w3-section" type="text" placeholder="Comment" required name="Comment">
+      <button class="w3-btn w3-section" type="submit">
+        <i class="fa fa-paper-plane"></i> SEND MESSAGE
+      </button>
+    </form>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p> ResuME Builder </p>
+</footer>
+
+</body>
+</html>
