@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+use Illuminate\Support\Facades\Artisan;
+
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     /**
@@ -22,4 +25,24 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    public function setUp()
+    {
+        parent::setUp();
+        Artisan::call('migrate');
+
+        $user = User::create([
+            'name' => 'Bob Saget',
+            'email' => 'ohbobsagget@test.com',
+            'password' => 'password123'
+        ]);
+        $this->be($user);
+    }
+
+    public function tearDown()
+    {
+        Artisan::call('migrate:reset');
+        parent::tearDown();
+    }
+
 }
