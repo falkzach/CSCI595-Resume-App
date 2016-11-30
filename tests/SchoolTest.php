@@ -1,8 +1,10 @@
 <?php
 
+use App\School;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Auth;
 
 class SchoolTest extends TestCase
 {
@@ -11,9 +13,18 @@ class SchoolTest extends TestCase
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testGetSchools()
     {
-        $this->visit('/api/resume')
-            ->see('hello world');
+        $user = Auth::user();
+        $data = [
+            'user_id' => "$user->id",
+            'institution' => 'UMT',
+            'enrolled' => '1',
+            'graduation_date' => '2018-05-01',
+            'gpa' => '4.0'
+        ];
+        School::create($data);
+        $this->json('GET', '/api/school')
+            ->seeJson($data);
     }
 }
