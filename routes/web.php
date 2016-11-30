@@ -19,9 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/example', function() {
-    return view('apiexample');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/example', function() {
+        return view('apiexample');
+    });
 });
+
 
 Route::group(['prefix' => 'api/school'], function() {
     Route::get('/', 'SchoolController@index');
