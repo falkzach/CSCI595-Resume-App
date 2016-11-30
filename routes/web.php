@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/example', function() {
+    return view('apiexample');
+});
+
+Route::group(['prefix' => 'api/school'], function() {
+    Route::get('/', 'SchoolController@index');
+    Route::post('/create', 'SchoolController@create');
+    Route::delete('/delete', 'SchoolController@delete');
+});
