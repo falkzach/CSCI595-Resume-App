@@ -2,30 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\School;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class SchoolController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $schools = Auth::user()->schools;
         return response()->json($schools);
+    }
+
+    public function create()
+    {
+        $data = Input::all();
+        $school = School::create($data);
+        return response()->json($school);
+    }
+
+    public function delete()
+    {
+        $id = Input::get('id');
+        $school = School::find($id)->delete();
+        return response()->json(['id' => $id]);
     }
 
 

@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Session;
 
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
@@ -30,6 +31,8 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         parent::setUp();
         Artisan::call('migrate');
+
+        Session::start();
 
         $user = User::create([
             'name' => 'Bob Saget',

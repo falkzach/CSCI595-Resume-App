@@ -17,4 +17,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('/school', 'SchoolCOntroller@index');
+
+Route::group(['prefix' => 'school'], function() {
+    Route::get('/', 'SchoolController@index');
+    Route::post('/create', 'SchoolController@create');
+    Route::delete('/delete', 'SchoolController@delete');
+});
