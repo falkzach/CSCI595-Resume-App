@@ -1,0 +1,85 @@
+div.w3-content.w3-padding {
+  margin-top: 5em;
+}
+div.col-sm-4 {
+  border-radius: 10px;
+  border: 2px solid #bce8f1;
+  width: 30%;
+  height: 150px;
+  margin: 1em;
+  padding: 0;
+}
+.panel-info>.panel-heading {
+  color: #31708f;
+  background-color: #d9edf7;
+}
+.panel-heading {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 0px;
+}
+.template {
+  margin-left: .5em;
+  margin-right: .5em;
+  padding: 0;
+}
+
+div.col-sm-8 {
+  width: 30%;
+  height: 150px;
+  margin: 1em;
+  float: right;
+}
+div.col-sm-4-resume {
+  border-radius: 10px;
+  border: 2px solid #bce8f1;
+  width: 50%;
+  height: 150px;
+  margin: 1em;
+  padding: 0;
+  float: left;
+}
+.account-button {
+  float: right;
+  font-size: 15px;
+}
+.column1 {
+  float: left;
+  width: 45%;
+}
+div.column1 div.col-sm-4-resume2 {
+  border-radius: 10px;
+  border: 2px solid #bce8f1;
+  width: 100%;
+  margin: 1em;
+  padding: 0;
+  float: left;
+}
+div.column2 div.col-sm-4-resume2 {
+  border-radius: 10px;
+  border: 2px solid #bce8f1;
+  width: 100%;
+  margin: 1em;
+  padding: 0;
+  float: right;
+}
+.column2 {
+  float: right;
+  width: 45%;
+}
+form {
+  margin: 1em;
+}
+.center {
+  text-align: center;
+}
+div.resume-page {
+  background-color: white;
+  border: 2px solid black;
+  height: 500px;
+  border-radius: 0px;
+  margin: 1em;
+}
+.contain {
+  margin: 1em;
+}
