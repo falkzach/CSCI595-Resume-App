@@ -18,9 +18,9 @@ class SchoolTest extends TestCase
         $schoolData = [
             'user_id' => "$user->id",
             'institution' => 'UMT',
-            'enrolled' => '1',
+            'enrolled' => "1",
             'graduation_date' => '2018-05-01',
-            'gpa' => '4.0'
+            'gpa' => "4.0"
         ];
         School::create($schoolData);
         $this->json('GET', '/api/school')

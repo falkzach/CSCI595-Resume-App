@@ -31,3 +31,9 @@ Route::group(['prefix' => 'api/school'], function() {
     Route::post('/create', 'SchoolController@create');
     Route::delete('/delete', 'SchoolController@delete');
 });
+
+//Route::group(['prefix' => 'api/work'], function() {
+//    Route::get('/', 'WorkController@index');
+//    Route::post('/create', 'WorkController@create');
+//    Route::delete('/delete', 'WorkController@delete');
+//});
