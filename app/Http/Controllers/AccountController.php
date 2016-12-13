@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Str;
 
 class AccountController extends Controller
 {
@@ -41,7 +42,9 @@ class AccountController extends Controller
             'remember_token' => Str::random(60),
         ])->save();
 
-        $this->guard()->login($user);
+//        dd($user);
+
+        Auth::login($user, true);
 
         return response()->json($user);
     }

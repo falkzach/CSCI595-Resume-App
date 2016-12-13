@@ -23,8 +23,13 @@ class AccountTest extends TestCase
             'password' => 'newpassword123',
         ];
 
-        $this->json('POST', '/api/account/update')
-            ->seeJson($data);
+        $check = [
+            'name' => 'Not Bob Saget',
+            'email' => 'ohnotbobsagget@test.com',
+        ];
+
+        $this->json('POST', '/api/account/update', $data)
+            ->seeJson($check);
     }
 
 }
