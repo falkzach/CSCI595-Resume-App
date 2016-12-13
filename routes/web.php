@@ -57,6 +57,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+Route::group(['prefix' => 'api/account'], function() {
+    Route::get('/', 'AccountController@index');
+    Route::post('/update', 'AccountController@update');
+});
 
 Route::group(['prefix' => 'api/school'], function() {
     Route::get('/', 'SchoolController@index');
