@@ -20,16 +20,22 @@ class AccountTest extends TestCase
         $data = [
             'name' => 'Not Bob Saget',
             'email' => 'ohnotbobsagget@test.com',
-            'password' => 'newpassword123',
-        ];
-
-        $check = [
-            'name' => 'Not Bob Saget',
-            'email' => 'ohnotbobsagget@test.com',
+            'phone' => '406-555-1212',
+            'address' => '123 Fake st Missoula, MT 59801'
         ];
 
         $this->json('POST', '/api/account/update', $data)
-            ->seeJson($check);
+            ->seeJson($data);
+    }
+
+    public function testChangePassword()
+    {
+
+    }
+
+    public function testDeactivateAccount()
+    {
+
     }
 
 }
