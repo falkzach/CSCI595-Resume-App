@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
+use Validator;
 
 class AccountController extends Controller
 {
@@ -24,13 +24,25 @@ class AccountController extends Controller
 
     public function update(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255',
         ]);
 
-        $data = Input::all();
         $user = Auth::user();
+        $data = Input::all();
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'name and email are required!',
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'address' => $user->address,
+            ]);
+        }
 
         $user->update([
             'name' => $data['name'],
@@ -44,11 +56,18 @@ class AccountController extends Controller
 
     public function changePassword(Request $request)
     {
-        $this->validate($request, [
-            'currentPassword' => 'required|min:6',
+        $validator = Validator::make($request->all(), [
             'newPassword' => 'required|min:6',
             'confirmPassword' => 'required|min:6',
         ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Password must be 6 characters long!'
+            ]);
+        }
 
         $data = Input::all();
         $user = Auth::user();
@@ -58,7 +77,7 @@ class AccountController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Incorrect Password!'
-            ], 500);
+            ]);
         }
 
         if($data['newPassword'] !== $data['confirmPassword'])
@@ -66,7 +85,7 @@ class AccountController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Passwords did not match!'
-            ], 500);
+            ]);
         }
 
         $user->forceFill([
@@ -74,7 +93,6 @@ class AccountController extends Controller
             'remember_token' => Str::random(60),
         ])->save();
         Auth::login($user, true);
-        return response()->json($user, 200);
+        return response()->json($user);
     }
-
 }
