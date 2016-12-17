@@ -11,15 +11,6 @@ use Illuminate\Support\Str;
 
 class AccountController extends Controller
 {
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -27,10 +18,6 @@ class AccountController extends Controller
 
     public function index(Request $request)
     {
-        $this->validate($request, [
-
-        ]);
-
         $user = Auth::user();
         return response()->json($user);
     }
@@ -58,21 +45,36 @@ class AccountController extends Controller
     public function changePassword(Request $request)
     {
         $this->validate($request, [
-            'currentPassword' => 'required|max:255',
-            'newPassword' => 'required|email|max:255|unique:users',
-            'confirmPassword' => 'required|min:6|confirmed',
+            'currentPassword' => 'required|min:6',
+            'newPassword' => 'required|min:6',
+            'confirmPassword' => 'required|min:6',
         ]);
 
         $data = Input::all();
         $user = Auth::user();
 
+        if($user->password !== $data['currentPassword'])
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Incorrect Password!'
+            ], 500);
+        }
+
+        if($data['newPassword'] !== $data['confirmPassword'])
+        {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Passwords did not match!'
+            ], 500);
+        }
+
         $user->forceFill([
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['newPassword']),
             'remember_token' => Str::random(60),
         ])->save();
-
         Auth::login($user, true);
-        return response()->json($user);
+        return response()->json($user, 200);
     }
 
 }
