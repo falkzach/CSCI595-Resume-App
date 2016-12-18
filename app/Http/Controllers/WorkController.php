@@ -36,7 +36,11 @@ class WorkController extends Controller
 
     public function update(Work $work)
     {
-
+        $data = Input::all();
+        $work->update($data);
+        return response()->json([
+            'school' => $work
+        ]);
     }
 
 

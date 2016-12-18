@@ -55,4 +55,28 @@ class WorkTest extends TestCase
         $response = $this->call('DELETE', "/api/work/delete/$work->id");
         $this->assertCount(0, Work::all());
     }
+
+    public function testUpdateWork()
+    {
+        $user = Auth::user();
+        $workData = [
+            'user_id' => "$user->id",
+            'employer' => 'My Old Workplace',
+            'start_date' => '2010-05-01',
+            'end_date' => '2015-05-01',
+            'description' => 'I did work and stuff'
+        ];
+        $work = Work::create($workData);
+
+        $data = [
+            'user_id' => "$user->id",
+            'employer' => 'My Old Workplace',
+            'start_date' => '2010-05-01',
+            'end_date' => '2011-05-01',
+            'description' => 'I did nothing and got payed'
+        ];
+
+        $this->json('POST', "/api/work/update/$work->id", $data)
+            ->seeJson($data);
+    }
 }
