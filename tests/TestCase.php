@@ -36,7 +36,7 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         $user = User::create([
             'name' => 'Bob Saget',
-            'email' => 'ohbobsagget@test.com',
+            'email' => 'ohbobsaget@test.com',
             'password' => 'password123'
         ]);
         $this->be($user);

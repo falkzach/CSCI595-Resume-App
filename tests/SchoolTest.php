@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SchoolTest extends TestCase
 {
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
     public function testGetSchools()
     {
         $user = Auth::user();
