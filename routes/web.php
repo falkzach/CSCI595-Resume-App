@@ -53,6 +53,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+Route::model('user', 'App\User');
+Route::model('school', 'App\School');
+Route::model('work', 'App\Work');
+
 //API
 Route::group(['prefix' => 'api/account'], function() {
     Route::get('/', 'AccountController@index');
@@ -63,7 +67,8 @@ Route::group(['prefix' => 'api/account'], function() {
 Route::group(['prefix' => 'api/school'], function() {
     Route::get('/', 'SchoolController@index');
     Route::post('/create', 'SchoolController@create');
-    Route::delete('/delete', 'SchoolController@delete');
+    Route::post('/update/{school}', 'SchoolController@update');
+    Route::delete('/delete/{school}', 'SchoolController@delete');
 });
 
 //Route::group(['prefix' => 'api/work'], function() {

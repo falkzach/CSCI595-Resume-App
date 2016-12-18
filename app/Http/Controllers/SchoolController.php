@@ -23,15 +23,23 @@ class SchoolController extends Controller
     {
         $data = Input::all();
         $school = School::create($data);
-        return response()->json($school);
+        return response()->json([
+            'school' => $school
+        ]);
     }
 
-    public function delete()
+    public function delete(School $school)
     {
-        $id = Input::get('id');
-        $school = School::find($id)->delete();
-        return response()->json(['id' => $id]);
+        $school->delete();
+        return response()->json(['id' => $school->id]);
     }
 
-
+    public function update(School $school)
+    {
+        $data = Input::all();
+        $school->update($data);
+        return response()->json([
+            'school' => $school
+        ]);
+    }
 }
