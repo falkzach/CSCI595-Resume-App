@@ -40,7 +40,7 @@ class AccountTest extends TestCase
             ->seeJson(['name' => 'Bob Saget', 'email' => 'ohbobsaget@test.com']);
     }
 
-    public function testChanagePasswordWrongCurrent()
+    public function testChangePasswordWrongCurrent()
     {
         $data= [
             'currentPassword' => 'wrongPassword123',
@@ -52,7 +52,7 @@ class AccountTest extends TestCase
             ->seeJson(['status' => 'error', 'message' => 'Incorrect Password!'], 500);
     }
 
-    public function testChanagePasswordMismatch()
+    public function testChangePasswordMismatch()
     {
         $data= [
             'currentPassword' => 'password123',
