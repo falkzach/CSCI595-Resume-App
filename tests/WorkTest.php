@@ -10,7 +10,7 @@ class WorkTest extends TestCase
      *
      * @return void
      */
-    public function testGetSchools()
+    public function testGetWork()
     {
         $user = Auth::user();
         $workData = [
@@ -25,38 +25,34 @@ class WorkTest extends TestCase
             ->seeJson($workData);
     }
 
-//    public function testCreateSchool()
-//    {
-//        $user = Auth::user();
-//        $workData = [
-//            'user_id' => "$user->id",
-//            'institution' => 'UMT',
-//            'enrolled' => '1',
-//            'graduation_date' => '2018-05-01',
-//            'gpa' => '4.0'
-//        ];
-//        $this->json('POST', '/api/school/create', $workData)
-//            ->seeJson($workData);
-//    }
-//
-//    public function testDeleteSchool()
-//    {
-//        $user = Auth::user();
-//        $workData = [
-//            'user_id' => "$user->id",
-//            'institution' => 'UMT',
-//            'enrolled' => '1',
-//            'graduation_date' => '2018-05-01',
-//            'gpa' => '4.0'
-//        ];
-//        $school = School::create($workData);
-//        $this->assertCount(1, School::all());
-//
-//        $data = [
-//            'id' => $school->id,
-//        ];
-//
-//        $response = $this->call('DELETE', '/api/school/delete', $data);
-//        $this->assertCount(0, School::all());
-//    }
+    public function testCreateWork()
+    {
+        $user = Auth::user();
+        $workData = [
+            'user_id' => "$user->id",
+            'employer' => 'My Old Workplace',
+            'start_date' => '2010-05-01',
+            'end_date' => '2015-05-01',
+            'description' => 'I did work and stuff'
+        ];
+        $this->json('POST', '/api/work/create', $workData)
+            ->seeJson($workData);
+    }
+
+    public function testDeleteWork()
+    {
+        $user = Auth::user();
+        $workData = [
+            'user_id' => "$user->id",
+            'employer' => 'My Old Workplace',
+            'start_date' => '2010-05-01',
+            'end_date' => '2015-05-01',
+            'description' => 'I did work and stuff'
+        ];
+        $work = Work::create($workData);
+        $this->assertCount(1, Work::all());
+
+        $response = $this->call('DELETE', "/api/work/delete/$work->id");
+        $this->assertCount(0, Work::all());
+    }
 }

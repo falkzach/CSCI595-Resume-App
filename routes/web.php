@@ -71,8 +71,9 @@ Route::group(['prefix' => 'api/school'], function() {
     Route::delete('/delete/{school}', 'SchoolController@delete');
 });
 
-//Route::group(['prefix' => 'api/work'], function() {
-//    Route::get('/', 'WorkController@index');
-//    Route::post('/create', 'WorkController@create');
-//    Route::delete('/delete', 'WorkController@delete');
-//});
+Route::group(['prefix' => 'api/work'], function() {
+    Route::get('/', 'WorkController@index');
+    Route::post('/create', 'WorkController@create');
+    Route::post('/update/{work}', 'WorkController@create');
+    Route::delete('/delete/{work}', 'WorkController@delete');
+});

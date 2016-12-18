@@ -22,15 +22,21 @@ class WorkController extends Controller
     public function create()
     {
         $data = Input::all();
-        $school = Work::create($data);
-        return response()->json($school);
+        $work = Work::create($data);
+        return response()->json([
+            'work' => $work
+        ]);
     }
 
-    public function delete()
+    public function delete(Work $work)
     {
-        $id = Input::get('id');
-        $school = Work::find($id)->delete();
-        return response()->json(['id' => $id]);
+        $work->delete();
+        return response()->json(['id' => $work->id]);
+    }
+
+    public function update(Work $work)
+    {
+
     }
 
 

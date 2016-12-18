@@ -49,11 +49,7 @@ class SchoolTest extends TestCase
         $school = School::create($schoolData);
         $this->assertCount(1, School::all());
 
-        $data = [
-            'id' => $school->id,
-        ];
-
-        $response = $this->call('DELETE', "/api/school/delete/$school->id", $data);
+        $response = $this->call('DELETE', "/api/school/delete/$school->id", []);
         $this->assertCount(0, School::all());
     }
 
