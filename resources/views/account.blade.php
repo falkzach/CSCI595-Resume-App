@@ -26,6 +26,8 @@
     <div class="container-fluid" id="account-info-edit" style="display:none">
         <form>
             <dl>
+                <span style="background-color: red;color: white" id="password_problems"></span> <!-- TODO: For notifying user if their attempt to change password fails -->
+
                 <dt><label for="name_input">Name:</label></dt>
                 <dd><input type="text" name="name" id="name_input" value=""/></dd>
 
@@ -36,7 +38,16 @@
                 <dd><input type="text" name="telephone" id="telephone_input" value=""/></dd>
 
                 <dt><label for="address_input">Address:</label></dt>
-                <dd><input type="text" name="address" id="address_input" value=""/></dd>  <!-- CHANGE DEFAULT VALUES ending here -->
+                <dd><input type="text" name="address" id="address_input" value=""/></dd>
+
+                <dt><label for="old_password_input">Old Password:</label></dt>
+                <dd><input type="password" name="old_password" id="old_password_input" value=""/></dd>
+
+                <dt><label for="new_password_input">New Password:</label></dt>
+                <dd><input type="password" name="new_password" id="new_password_input" value=""/></dd>
+
+                <dt><label for="confirm_new_password_input">Confirm New Password:</label></dt>
+                <dd><input type="password" name="confirm_new_password" id="confirm_new_password_input" value=""/></dd>
             </dl>
             <br>
             <button class="btn submit-button"> Submit Changes </button>
@@ -91,7 +102,10 @@
                 name: $('#name_input').val(),
                 email: $('#email_input').val(),
                 phone: $('#telephone_input').val(),
-                address: $('#address_input').val()
+                address: $('#address_input').val(),
+                current_password: $('#current_password_input').val(),
+                new_password: $('#new_password_input').val(),
+                confirm_new_password: $('#confirm_new_password_input').val()
             };
 
             $.ajax({
