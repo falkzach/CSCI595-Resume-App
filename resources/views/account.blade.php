@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app')
 
 @section('content')
 <div>
@@ -81,7 +81,6 @@
                 data: {_token: account.CSRF_TOKEN},
                 dataType: 'JSON',
                 success: function (data) {
-                    console.log(data);
                     account.name = data['user']['name'];
                     account.email = data['user']['email'];
                     account.phone = data['user']['phone'];
@@ -105,7 +104,6 @@
                 data: data,
                 dataType: 'JSON',
                 success: function (data) {
-                    console.log(data);
                     account.name = data['user']['name'];
                     account.email = data['user']['email'];
                     account.phone = data['user']['phone'];
