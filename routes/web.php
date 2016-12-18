@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
 Route::model('user', 'App\User');
 Route::model('school', 'App\School');
 Route::model('work', 'App\Work');
+Route::model('skill', 'App\Skill');
+Route::model('reference', 'App\Reference');
 
 //API
 Route::group(['prefix' => 'api/account'], function() {
@@ -67,21 +69,27 @@ Route::group(['prefix' => 'api/account'], function() {
 Route::group(['prefix' => 'api/school'], function() {
     Route::get('/', 'SchoolController@index');
     Route::post('/create', 'SchoolController@create');
-    Route::post('/update/{school}', 'SchoolController@update');
-    Route::delete('/delete/{school}', 'SchoolController@delete');
+    Route::post('/{school}/update', 'SchoolController@update');
+    Route::delete('/{school}/delete', 'SchoolController@delete');
 });
 
 Route::group(['prefix' => 'api/work'], function() {
     Route::get('/', 'WorkController@index');
     Route::post('/create', 'WorkController@create');
-    Route::post('/update/{work}', 'WorkController@create');
-    Route::delete('/delete/{work}', 'WorkController@delete');
+    Route::post('/{work}/update', 'WorkController@create');
+    Route::delete('/{work}/delete', 'WorkController@delete');
 });
 
 Route::group(['prefix' => 'api/skill'], function() {
-
+    Route::get('/', 'SkillController@index');
+    Route::post('/create', 'SkillController@create');
+    Route::post('/{skill}/update', 'SkillController@create');
+    Route::delete('/{skill}/delete', 'SkillController@delete');
 });
 
 Route::group(['prefix' => 'api/reference'], function() {
-
+    Route::get('/', 'ReferenceController@index');
+    Route::post('/create', 'ReferenceController@create');
+    Route::post('/{reference}/update', 'ReferenceController@create');
+    Route::delete('/{reference}/delete', 'ReferenceController@delete');
 });

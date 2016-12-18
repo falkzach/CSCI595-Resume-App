@@ -52,7 +52,7 @@ class WorkTest extends TestCase
         $work = Work::create($workData);
         $this->assertCount(1, Work::all());
 
-        $response = $this->call('DELETE', "/api/work/delete/$work->id");
+        $response = $this->call('DELETE', "/api/work/$work->id/delete");
         $this->assertCount(0, Work::all());
     }
 
@@ -76,7 +76,7 @@ class WorkTest extends TestCase
             'description' => 'I did nothing and got payed'
         ];
 
-        $this->json('POST', "/api/work/update/$work->id", $data)
+        $this->json('POST', "/api/work/$work->id/update", $data)
             ->seeJson($data);
     }
 }

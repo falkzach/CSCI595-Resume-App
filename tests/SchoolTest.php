@@ -49,7 +49,7 @@ class SchoolTest extends TestCase
         $school = School::create($schoolData);
         $this->assertCount(1, School::all());
 
-        $response = $this->call('DELETE', "/api/school/delete/$school->id", []);
+        $response = $this->call('DELETE', "/api/school/$school->id/delete", []);
         $this->assertCount(0, School::all());
     }
 
@@ -73,7 +73,7 @@ class SchoolTest extends TestCase
             'gpa' => '3.9'
         ];
 
-        $this->json('POST', "/api/school/update/$school->id", $data)
+        $this->json('POST', "/api/school/$school->id/update", $data)
             ->seeJson($data);
     }
 }
