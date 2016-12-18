@@ -33,13 +33,13 @@
       <a href="/resumes" class="w3-left"> Your Résumés </a>
       <a href="/build" class="w3-left"> Build </a>
       <a href="/main#about" class="w3-left"> About </a>
-      <a href="/main#contact" class="w3-left w3-margin-right"> Contact </a>
+      <a href="/main#contact" class="w3-left"> Contact </a>
       @if(Auth::guest())
           <a href="{{ url('/login') }}">Login</a>
           <a href="{{ url('/register') }}">Register</a>
       @else
-          <a href="/account" class="w3-left w3-margin-right"> Account </a>
-            <a href="{{ url('/logout') }}"
+          <a href="/account" class="w3-left"> Account </a>
+            <a href="{{ url('/logout') }}" class="w3-left w3-margin-right"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             Logout</a>
             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

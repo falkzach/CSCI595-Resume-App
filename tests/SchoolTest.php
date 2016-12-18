@@ -13,9 +13,9 @@ class SchoolTest extends TestCase
         $schoolData = [
             'user_id' => "$user->id",
             'institution' => 'UMT',
-            'enrolled' => '1',
+            'enrolled' => "1",
             'graduation_date' => '2018-05-01',
-            'gpa' => '4.0'
+            'gpa' => "4.0"
         ];
         School::create($schoolData);
         $this->json('GET', '/api/school')
@@ -49,11 +49,31 @@ class SchoolTest extends TestCase
         $school = School::create($schoolData);
         $this->assertCount(1, School::all());
 
+        $response = $this->call('DELETE', "/api/school/delete/$school->id", []);
+        $this->assertCount(0, School::all());
+    }
+
+    public function testUpdateSchool()
+    {
+        $user = Auth::user();
+        $schoolData = [
+            'user_id' => "$user->id",
+            'institution' => 'UMT',
+            'enrolled' => '1',
+            'graduation_date' => '2018-05-01',
+            'gpa' => '4.0'
+        ];
+        $school = School::create($schoolData);
+
         $data = [
-            'id' => $school->id,
+            'user_id' => "$user->id",
+            'institution' => 'UMT',
+            'enrolled' => '1',
+            'graduation_date' => '2020-05-01',
+            'gpa' => '3.9'
         ];
 
-        $response = $this->call('DELETE', '/api/school/delete', $data);
-        $this->assertCount(0, School::all());
+        $this->json('POST', "/api/school/update/$school->id", $data)
+            ->seeJson($data);
     }
 }
