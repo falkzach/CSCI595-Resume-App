@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\School;
+use App\Work;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-class SchoolController extends Controller
+class WorkController extends Controller
 {
     public function __construct()
     {
@@ -15,31 +15,33 @@ class SchoolController extends Controller
 
     public function index()
     {
-        $schools = Auth::user()->schools;
-        return response()->json($schools);
+        $work = Auth::user()->jobs;
+        return response()->json($work);
     }
 
     public function create()
     {
         $data = Input::all();
-        $school = School::create($data);
+        $work = Work::create($data);
         return response()->json([
-            'school' => $school
+            'work' => $work
         ]);
     }
 
-    public function delete(School $school)
+    public function delete(Work $work)
     {
-        $school->delete();
-        return response()->json(['id' => $school->id]);
+        $work->delete();
+        return response()->json(['id' => $work->id]);
     }
 
-    public function update(School $school)
+    public function update(Work $work)
     {
         $data = Input::all();
-        $school->update($data);
+        $work->update($data);
         return response()->json([
-            'school' => $school
+            'school' => $work
         ]);
     }
+
+
 }

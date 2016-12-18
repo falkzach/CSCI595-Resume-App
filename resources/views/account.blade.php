@@ -81,11 +81,7 @@
                 data: {_token: account.CSRF_TOKEN},
                 dataType: 'JSON',
                 success: function (data) {
-                    account.name = data['user']['name'];
-                    account.email = data['user']['email'];
-                    account.phone = data['user']['phone'];
-                    account.address = data['user']['address'];
-                    account.updatePage();
+                    account.updatePage(data);
                 }
             });
         },
@@ -104,17 +100,19 @@
                 data: data,
                 dataType: 'JSON',
                 success: function (data) {
-                    account.name = data['user']['name'];
-                    account.email = data['user']['email'];
-                    account.phone = data['user']['phone'];
-                    account.address = data['user']['address'];
-                    account.updatePage();
+                    account.updatePage(data);
                 }
             });
         },
 
         //updates values on account page
-        updatePage: function() {
+        updatePage: function(data) {
+            account.id = data['user']['id'];
+            account.name = data['user']['name'];
+            account.email = data['user']['email'];
+            account.phone = data['user']['phone'];
+            account.address = data['user']['address'];
+
             $('#name_static').text(account.name);
             $('#email_static').text(account.email);
             $('#telephone_static').text(account.phone);
