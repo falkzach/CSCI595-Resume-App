@@ -77,3 +77,11 @@ Route::group(['prefix' => 'api/work'], function() {
     Route::post('/update/{work}', 'WorkController@create');
     Route::delete('/delete/{work}', 'WorkController@delete');
 });
+
+Route::group(['prefix' => 'api/skill'], function() {
+
+});
+
+Route::group(['prefix' => 'api/reference'], function() {
+
+});
