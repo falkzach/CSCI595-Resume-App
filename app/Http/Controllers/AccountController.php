@@ -19,7 +19,9 @@ class AccountController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        return response()->json($user);
+        return response()->json([
+            'user' => $user,
+        ]);
     }
 
     public function update(Request $request)
@@ -37,10 +39,7 @@ class AccountController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'name and email are required!',
-                'name' => $user->name,
-                'email' => $user->email,
-                'phone' => $user->phone,
-                'address' => $user->address,
+                'user' => $user,
             ]);
         }
 
@@ -51,7 +50,9 @@ class AccountController extends Controller
             'address' => $data['address'],
         ]);
 
-        return response()->json($user);
+        return response()->json([
+            'user' => $user,
+        ]);
     }
 
     public function changePassword(Request $request)
@@ -93,6 +94,8 @@ class AccountController extends Controller
             'remember_token' => Str::random(60),
         ])->save();
         Auth::login($user, true);
-        return response()->json($user);
+        return response()->json([
+            'user' => $user,
+        ]);
     }
 }

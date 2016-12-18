@@ -81,10 +81,11 @@
                 data: {_token: account.CSRF_TOKEN},
                 dataType: 'JSON',
                 success: function (data) {
-                    account.name = data['name'];
-                    account.email = data['email'];
-                    account.phone = data['phone'];
-                    account.address = data['address'];
+                    console.log(data);
+                    account.name = data['user']['name'];
+                    account.email = data['user']['email'];
+                    account.phone = data['user']['phone'];
+                    account.address = data['user']['address'];
                     account.updatePage();
                 }
             });
@@ -104,10 +105,11 @@
                 data: data,
                 dataType: 'JSON',
                 success: function (data) {
-                    account.name = data['name'];
-                    account.email = data['email'];
-                    account.phone = data['phone'];
-                    account.address = data['address'];
+                    console.log(data);
+                    account.name = data['user']['name'];
+                    account.email = data['user']['email'];
+                    account.phone = data['user']['phone'];
+                    account.address = data['user']['address'];
                     account.updatePage();
                 }
             });
