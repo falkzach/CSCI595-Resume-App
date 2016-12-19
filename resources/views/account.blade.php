@@ -8,6 +8,8 @@
 
 <div class="container-fluid">
     <div class="container-fluid" id="account-info-static" style="display:initial">
+
+        <span style="background-color: red;color: white" id="password_notification"></span>
         <dl>
             <dt>Name:&nbsp;</dt>
             <dd><span id="name_static">name</span></dd>
@@ -22,12 +24,11 @@
             <dd><span id="address_static">address</span></dd>
         </dl>
         <button class="btn account-button"> Edit Account Info </button>
+        <button class="btn password-button"> Change Password </button>
     </div>
     <div class="container-fluid" id="account-info-edit" style="display:none">
         <form>
             <dl>
-                <span style="background-color: red;color: white" id="password_problems"></span> <!-- TODO: For notifying user if their attempt to change password fails -->
-
                 <dt><label for="name_input">Name:</label></dt>
                 <dd><input type="text" name="name" id="name_input" value=""/></dd>
 
@@ -39,7 +40,14 @@
 
                 <dt><label for="address_input">Address:</label></dt>
                 <dd><input type="text" name="address" id="address_input" value=""/></dd>
-
+            </dl>
+            <br>
+            <button class="btn submit-button"> Submit Changes </button>
+        </form>
+    </div>
+    <div class="container-fluid" id="account-change-password" style="display:none">
+        <form>
+            <dl>
                 <dt><label for="old_password_input">Old Password:</label></dt>
                 <dd><input type="password" name="old_password" id="old_password_input" value=""/></dd>
 
@@ -50,7 +58,7 @@
                 <dd><input type="password" name="confirm_new_password" id="confirm_new_password_input" value=""/></dd>
             </dl>
             <br>
-            <button class="btn submit-button"> Submit Changes </button>
+            <button class="btn password-submit-button"> Change Password </button>
         </form>
     </div>
 </div>
@@ -79,6 +87,18 @@
                 $("#account-info-edit").css('display','initial');
             });
 
+            $(".password-button").click(function(){
+                $("#account-info-static").css('display','none');
+                $("#account-change-password").css('display','initial');
+            });
+
+            $(".password-submit-button").click(function(e){  //TODO
+                e.preventDefault();
+                account.changePassword();
+                $("#account-info-static").css('display','initial');
+                $("#account-change-password").css('display','none');
+            });
+
             $(".submit-button").click(function(e){
                 e.preventDefault();
                 account.updateUser();
@@ -102,10 +122,7 @@
                 name: $('#name_input').val(),
                 email: $('#email_input').val(),
                 phone: $('#telephone_input').val(),
-                address: $('#address_input').val(),
-                current_password: $('#current_password_input').val(),
-                new_password: $('#new_password_input').val(),
-                confirm_new_password: $('#confirm_new_password_input').val()
+                address: $('#address_input').val()
             };
 
             $.ajax({
@@ -117,6 +134,33 @@
                     account.updatePage(data);
                 }
             });
+        },
+        changePassword: function() {
+          var data = {
+              _token: account.CSRF_TOKEN,
+              currentPassword: $('#old_password_input').val(),
+              newPassword: $('#new_password_input').val(),
+              confirmPassword: $('#confirm_new_password_input').val()
+          };
+
+          $.ajax({
+             type: "POST",
+              url: '/api/account/changePassword',
+              data: data,
+              dataType: 'JSON',
+              success: function (data) {
+                  if (data.status == 'error') {
+                      $('#password_notification').css('background-color','red');
+                      $('#password_notification').css('color','white');
+                      $('#password_notification').html(data.message);
+                  } else {
+                      $('#password_notification').css('background-color','white');
+                      $('#password_notification').css('color','black');
+                      $('#password_notification').html('Password changed successfully');
+                      account.updatePage(data);
+                  }
+              }
+          });
         },
 
         //updates values on account page
