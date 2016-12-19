@@ -130,3 +130,7 @@ Route::group(['prefix' => 'api/resume'], function() {
         Route::post('/{reference}/remove', 'ResumeController@removeReference');
     });
 });
+
+Route::group(['prefix' => 'api/contact'], function() {
+    Route::post('/add', 'ContactController@add');
+});
