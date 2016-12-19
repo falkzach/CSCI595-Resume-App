@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Reference');
     }
+
+    public function resumes()
+    {
+        return $this->hasMany('App\Resume');
+    }
 }

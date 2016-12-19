@@ -17,13 +17,7 @@ class ResumeTest extends TestCase
         ];
 
         Resume::create($resumeData);
-
-
-    }
-
-    public function testCreateResume()
-    {
-        $this->visit('/')
-            ->see('ResuME');
+        $this->json('GET', '/api/resume')
+            ->seeJson($resumeData);
     }
 }
