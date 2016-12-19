@@ -11,16 +11,21 @@
 |
 */
 
+//Root Redirect to Landing Page
 Route::get('/', function () {
     return redirect('main');
 });
 
 // ---------- Pages ----------------
+
+//Landing Page
 Route::get('/main', function ()
 {
   return view('main');
 });
 
+
+//Frontend Pages
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/build', function ()
     {
@@ -44,20 +49,25 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+//Canned Authentication Routes
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 
+
+//Example
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/example', function() {
         return view('apiexample');
     });
 });
 
+//Route Model Bindings
 Route::model('user', 'App\User');
 Route::model('school', 'App\School');
 Route::model('work', 'App\Work');
 Route::model('skill', 'App\Skill');
 Route::model('reference', 'App\Reference');
+Route::model('resume', 'App\Resume');
 
 //API
 Route::group(['prefix' => 'api/account'], function() {
@@ -92,4 +102,12 @@ Route::group(['prefix' => 'api/reference'], function() {
     Route::post('/create', 'ReferenceController@create');
     Route::post('/{reference}/update', 'ReferenceController@create');
     Route::delete('/{reference}/delete', 'ReferenceController@delete');
+});
+
+Route::group(['prefix' => 'api/resume'], function() {
+    Route::get('/', 'ResumeController@index');
+    Route::get('/{resume}', 'ResumeController@get');
+    Route::post('/create', 'ResumeController@create');
+    Route::post('/{resume}/update', 'ResumeController@create');
+    Route::delete('/{resume}/delete', 'ResumeController@delete');
 });

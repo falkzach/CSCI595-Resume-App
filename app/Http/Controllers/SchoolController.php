@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\School;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 
 class SchoolController extends Controller
 {
@@ -16,12 +16,14 @@ class SchoolController extends Controller
     public function index()
     {
         $schools = Auth::user()->schools;
-        return response()->json($schools);
+        return response()->json([
+            'schools' => $schools
+        ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $data = Input::all();
+        $data = $request->all();
         $school = School::create($data);
         return response()->json([
             'school' => $school
@@ -34,9 +36,9 @@ class SchoolController extends Controller
         return response()->json(['id' => $school->id]);
     }
 
-    public function update(School $school)
+    public function update(Request $request, School $school)
     {
-        $data = Input::all();
+        $data = $request->all();
         $school->update($data);
         return response()->json([
             'school' => $school
