@@ -110,4 +110,24 @@ Route::group(['prefix' => 'api/resume'], function() {
     Route::post('/create', 'ResumeController@create');
     Route::post('/{resume}/update', 'ResumeController@create');
     Route::delete('/{resume}/delete', 'ResumeController@delete');
+
+    Route::group(['prefix' => '/{resume}/school'], function() {
+        Route::post('/{school}/add', 'ResumeController@addSchool');
+        Route::post('/{school}/remove', 'ResumeController@removeSchool');
+    });
+
+    Route::group(['prefix' => '/{resume}/work'], function() {
+        Route::post('/{work}/add', 'ResumeController@addWork');
+        Route::post('/{work}/remove', 'ResumeController@removeWork');
+    });
+
+    Route::group(['prefix' => '/{resume}/skill'], function() {
+        Route::post('/{skill}/add', 'ResumeController@addSkill');
+        Route::post('/{skill}/remove', 'ResumeController@removeSkill');
+    });
+
+    Route::group(['prefix' => '/{resume}/reference'], function() {
+        Route::post('/{reference}/add', 'ResumeController@addReference');
+        Route::post('/{reference}/remove', 'ResumeController@removeReference');
+    });
 });

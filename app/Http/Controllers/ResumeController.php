@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Reference;
 use App\Resume;
+use App\School;
+use App\Skill;
+use App\Work;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,5 +54,45 @@ class ResumeController extends Controller
     {
         $resume->delete();
         return response()->json(['id' => $resume->id]);
+    }
+
+    public function addSchool(Resume $resume, School $school)
+    {
+
+    }
+
+    public function removeSchool(Resume $resume, School $school)
+    {
+
+    }
+
+    public function addWork(Resume $resume, Work $work)
+    {
+
+    }
+
+    public function removeWork(Resume $resume, Work $work)
+    {
+
+    }
+
+    public function addSkill(Resume $resume, Skill $skill)
+    {
+
+    }
+
+    public function removeSkill(Resume $resume, Skill $skill)
+    {
+
+    }
+
+    public function addReference(Resume $resume, Reference $reference)
+    {
+
+    }
+
+    public function removeReference(Resume $resume, Reference $reference)
+    {
+
     }
 }
