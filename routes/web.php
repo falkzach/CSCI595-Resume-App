@@ -58,6 +58,7 @@ Route::model('school', 'App\School');
 Route::model('work', 'App\Work');
 Route::model('skill', 'App\Skill');
 Route::model('reference', 'App\Reference');
+Route::model('resume', 'App\Reference');
 
 //API
 Route::group(['prefix' => 'api/account'], function() {
@@ -92,4 +93,12 @@ Route::group(['prefix' => 'api/reference'], function() {
     Route::post('/create', 'ReferenceController@create');
     Route::post('/{reference}/update', 'ReferenceController@create');
     Route::delete('/{reference}/delete', 'ReferenceController@delete');
+});
+
+Route::group(['prefix' => 'api/resume'], function() {
+    Route::get('/', 'ResumeController@index');
+    Route::get('/{resume}', 'ResumeController@get');
+    Route::post('/create', 'ResumeController@create');
+    Route::post('/{resume}/update', 'ResumeController@create');
+    Route::delete('/{resume}/delete', 'ResumeController@delete');
 });

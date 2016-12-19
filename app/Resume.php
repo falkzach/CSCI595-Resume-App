@@ -10,5 +10,23 @@ class Resume extends Model
         'user_id', 'name',
     ];
 
-    //TODO: many to many relationships
+    public function schools()
+    {
+        return $this->belongsToMany('App\School');
+    }
+
+    public function jobs()
+    {
+        return $this->belongsToMany('App\Work');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany('App\Skill');
+    }
+
+    public function references()
+    {
+        return $this->belongsToMany('App\Reference');
+    }
 }
