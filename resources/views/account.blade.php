@@ -92,7 +92,7 @@
                 $("#account-change-password").css('display','initial');
             });
 
-            $(".password-submit-button").click(function(e){  //TODO
+            $(".password-submit-button").click(function(e){
                 e.preventDefault();
                 account.changePassword();
                 $("#account-info-static").css('display','initial');
