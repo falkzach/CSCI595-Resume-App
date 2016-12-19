@@ -58,12 +58,14 @@ class ResumeController extends Controller
 
     public function addSchool(Resume $resume, School $school)
     {
-
+        $resume->schools()->attach($school->id);
+        return response()->json(['resume' => $resume]);
     }
 
     public function removeSchool(Resume $resume, School $school)
     {
-
+        $resume->schools()->detach($school->id);
+        return response()->json(['resume' => $resume]);
     }
 
     public function addWork(Resume $resume, Work $work)

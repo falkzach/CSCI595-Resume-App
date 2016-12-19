@@ -24,7 +24,6 @@ Route::get('/main', function ()
   return view('main');
 });
 
-
 //Frontend Pages
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/build', function ()
