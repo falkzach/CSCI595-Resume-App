@@ -70,31 +70,37 @@ class ResumeController extends Controller
 
     public function addWork(Resume $resume, Work $work)
     {
-
+        $resume->jobs()->attach($work->id);
+        return response()->json(['resume' => $resume]);
     }
 
     public function removeWork(Resume $resume, Work $work)
     {
-
+        $resume->jobs()->detach($work->id);
+        return response()->json(['resume' => $resume]);
     }
 
     public function addSkill(Resume $resume, Skill $skill)
     {
-
+        $resume->skills()->attach($skill->id);
+        return response()->json(['resume' => $resume]);
     }
 
     public function removeSkill(Resume $resume, Skill $skill)
     {
-
+        $resume->skills()->detach($skill->id);
+        return response()->json(['resume' => $resume]);
     }
 
     public function addReference(Resume $resume, Reference $reference)
     {
-
+        $resume->references()->attach($reference->id);
+        return response()->json(['resume' => $resume]);
     }
 
     public function removeReference(Resume $resume, Reference $reference)
     {
-
+        $resume->references()->detach($reference->id);
+        return response()->json(['resume' => $resume]);
     }
 }
