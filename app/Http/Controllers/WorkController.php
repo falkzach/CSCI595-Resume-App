@@ -16,7 +16,7 @@ class WorkController extends Controller
     public function index()
     {
         $work = Auth::user()->jobs;
-        return response()->json($work);
+        return response()->json(['work' => $work,]);
     }
 
     public function create()

@@ -16,7 +16,7 @@ class SchoolController extends Controller
     public function index()
     {
         $schools = Auth::user()->schools;
-        return response()->json($schools);
+        return response()->json(['school' => $schools,]);
     }
 
     public function create()
