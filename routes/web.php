@@ -67,7 +67,7 @@ Route::model('school', 'App\School');
 Route::model('work', 'App\Work');
 Route::model('skill', 'App\Skill');
 Route::model('reference', 'App\Reference');
-Route::model('resume', 'App\Reference');
+Route::model('resume', 'App\Resume');
 
 //API
 Route::group(['prefix' => 'api/account'], function() {
