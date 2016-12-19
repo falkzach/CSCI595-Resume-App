@@ -88,7 +88,6 @@
           init: function() {
               contact.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
               $('#send-message').click(function(e){
-                  console.log('click');
                   e.preventDefault();
                   contact.sendMessage();
               });
@@ -101,7 +100,6 @@
                   subject: $('#message-subject').val(),
                   comment: $('#message-comment').val(),
               };
-              console.log(data);
 
               $.ajax({
                   type: "POST",
