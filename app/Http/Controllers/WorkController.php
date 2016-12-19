@@ -26,7 +26,7 @@ class WorkController extends Controller
         $data = $request->all();
         $work = Work::create($data);
         return response()->json([
-            'work' => $work
+            'job' => $work
         ]);
     }
 
@@ -41,7 +41,7 @@ class WorkController extends Controller
         $data = $request->all();
         $work->update($data);
         return response()->json([
-            'school' => $work
+            'job' => $work
         ]);
     }
 
