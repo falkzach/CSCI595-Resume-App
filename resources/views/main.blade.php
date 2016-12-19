@@ -69,14 +69,60 @@
   </div>
 
   <p> Please get in touch with us for any questions you may have. </p>
-  <form action="form.asp" target="_blank">
-    <input class="w3-input" type="text" placeholder="Name" required name="Name">
-    <input class="w3-input w3-section" type="text" placeholder="Email" required name="Email">
-    <input class="w3-input w3-section" type="text" placeholder="Subject" required name="Subject">
-    <input class="w3-input w3-section" type="text" placeholder="Comment" required name="Comment">
-    <button class="w3-btn w3-section" type="submit">
+  <form>
+    <input class="w3-input w3-section" type="text" placeholder="Name" required name="Name" id="message-name">
+    <input class="w3-input w3-section" type="text" placeholder="Email" required name="Email" id="message-email">
+    <input class="w3-input w3-section" type="text" placeholder="Subject" required name="Subject" id="message-subject">
+    <input class="w3-input w3-section" type="text" placeholder="Comment" required name="Comment" id="message-comment">
+    <button class="w3-btn w3-section" type="submit" id="send-message">
       <i class="fa fa-paper-plane"></i> SEND MESSAGE
     </button>
   </form>
 </div>
+@endsection
+
+@section('javascript')
+  <script>
+      var contact = {
+          CSRF_TOKEN: undefined,
+          init: function() {
+              contact.CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+              $('#send-message').click(function(e){
+                  console.log('click');
+                  e.preventDefault();
+                  contact.sendMessage();
+              });
+          },
+          sendMessage: function() {
+              var data = {
+                  _token: contact.CSRF_TOKEN,
+                  name: $('#message-name').val(),
+                  email: $('#message-email').val(),
+                  subject: $('#message-subject').val(),
+                  comment: $('#message-comment').val(),
+              };
+              console.log(data);
+
+              $.ajax({
+                  type: "POST",
+                  url: '/api/contact/add',
+                  data: data,
+                  dataType: 'JSON',
+                  success: function (data) {
+                      contact.clearForm();
+                  }
+              });
+          },
+          clearForm: function() {
+            $('#message-name').val('');
+            $('#message-email').val('');
+            $('#message-subject').val('');
+            $('#message-comment').val('');
+          }
+      };
+
+      $(function() {
+          contact.init();
+      });
+  </script>
 @endsection
