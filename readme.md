@@ -8,6 +8,9 @@
 * hp_pdo_sqlite
 * composer
 
+##Running
+    php artisan serve
+
 ## Running backend unit tests
 
 ###windows
