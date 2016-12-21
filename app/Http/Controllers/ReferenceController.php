@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\School;
+use App\Reference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SchoolController extends Controller
+class ReferenceController extends Controller
 {
     public function __construct()
     {
@@ -15,33 +15,33 @@ class SchoolController extends Controller
 
     public function index()
     {
-        $schools = Auth::user()->schools;
+        $reference = Auth::user()->references;
         return response()->json([
-            'schools' => $schools
+            'references' => $reference
         ]);
     }
 
     public function create(Request $request)
     {
         $data = $request->all();
-        $school = School::create($data);
+        $references = Reference::create($data);
         return response()->json([
-            'school' => $school
+            'references' => $references
         ]);
     }
 
-    public function delete(School $school)
+    public function delete(Reference $reference)
     {
-        $school->delete();
-        return response()->json(['id' => $school->id]);
+        $reference->delete();
+        return response()->json(['id' => $reference->id]);
     }
 
-    public function update(Request $request, School $school)
+    public function update(Request $request, Reference $reference)
     {
         $data = $request->all();
-        $school->update($data);
+        $reference->update($data);
         return response()->json([
-            'school' => $school
+            'reference' => $reference
         ]);
     }
 }

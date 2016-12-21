@@ -35,8 +35,8 @@
       <a href="/main#about" class="w3-left"> About </a>
       <a href="/main#contact" class="w3-left"> Contact </a>
       @if(Auth::guest())
-          <a href="{{ url('/login') }}">Login</a>
-          <a href="{{ url('/register') }}">Register</a>
+          <a href="{{ url('/login') }}"  class="w3-left">Login</a>
+          <a href="{{ url('/register') }}"  class="w3-left w3-margin-right">Register</a>
       @else
           <a href="/account" class="w3-left"> Account </a>
             <a href="{{ url('/logout') }}" class="w3-left w3-margin-right"

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\School;
+use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SchoolController extends Controller
+class SkillController extends Controller
 {
     public function __construct()
     {
@@ -15,33 +15,33 @@ class SchoolController extends Controller
 
     public function index()
     {
-        $schools = Auth::user()->schools;
+        $skills = Auth::user()->skills;
         return response()->json([
-            'schools' => $schools
+            'skills' => $skills
         ]);
     }
 
     public function create(Request $request)
     {
         $data = $request->all();
-        $school = School::create($data);
+        $skills = Skill::create($data);
         return response()->json([
-            'school' => $school
+            'skills' => $skills
         ]);
     }
 
-    public function delete(School $school)
+    public function delete(Skill $skill)
     {
-        $school->delete();
-        return response()->json(['id' => $school->id]);
+        $skill->delete();
+        return response()->json(['id' => $skill->id]);
     }
 
-    public function update(Request $request, School $school)
+    public function update(Request $request, Skill $skill)
     {
         $data = $request->all();
-        $school->update($data);
+        $skill->update($data);
         return response()->json([
-            'school' => $school
+            'skill' => $skill
         ]);
     }
 }

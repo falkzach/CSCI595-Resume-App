@@ -11,16 +11,20 @@
 |
 */
 
+//Root Redirect to Landing Page
 Route::get('/', function () {
     return redirect('main');
 });
 
 // ---------- Pages ----------------
+
+//Landing Page
 Route::get('/main', function ()
 {
   return view('main');
 });
 
+//Frontend Pages
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/build', function ()
     {
@@ -44,18 +48,25 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+//Canned Authentication Routes
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 
+
+//Example
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/example', function() {
         return view('apiexample');
     });
 });
 
+//Route Model Bindings
 Route::model('user', 'App\User');
 Route::model('school', 'App\School');
 Route::model('work', 'App\Work');
+Route::model('skill', 'App\Skill');
+Route::model('reference', 'App\Reference');
+Route::model('resume', 'App\Resume');
 
 //API
 Route::group(['prefix' => 'api/account'], function() {
@@ -67,21 +78,59 @@ Route::group(['prefix' => 'api/account'], function() {
 Route::group(['prefix' => 'api/school'], function() {
     Route::get('/', 'SchoolController@index');
     Route::post('/create', 'SchoolController@create');
-    Route::post('/update/{school}', 'SchoolController@update');
-    Route::delete('/delete/{school}', 'SchoolController@delete');
+    Route::post('/{school}/update', 'SchoolController@update');
+    Route::delete('/{school}/delete', 'SchoolController@delete');
 });
 
 Route::group(['prefix' => 'api/work'], function() {
     Route::get('/', 'WorkController@index');
     Route::post('/create', 'WorkController@create');
-    Route::post('/update/{work}', 'WorkController@create');
-    Route::delete('/delete/{work}', 'WorkController@delete');
+    Route::post('/{work}/update', 'WorkController@create');
+    Route::delete('/{work}/delete', 'WorkController@delete');
 });
 
 Route::group(['prefix' => 'api/skill'], function() {
-
+    Route::get('/', 'SkillController@index');
+    Route::post('/create', 'SkillController@create');
+    Route::post('/{skill}/update', 'SkillController@create');
+    Route::delete('/{skill}/delete', 'SkillController@delete');
 });
 
 Route::group(['prefix' => 'api/reference'], function() {
+    Route::get('/', 'ReferenceController@index');
+    Route::post('/create', 'ReferenceController@create');
+    Route::post('/{reference}/update', 'ReferenceController@create');
+    Route::delete('/{reference}/delete', 'ReferenceController@delete');
+});
 
+Route::group(['prefix' => 'api/resume'], function() {
+    Route::get('/', 'ResumeController@index');
+    Route::get('/{resume}', 'ResumeController@get');
+    Route::post('/create', 'ResumeController@create');
+    Route::post('/{resume}/update', 'ResumeController@create');
+    Route::delete('/{resume}/delete', 'ResumeController@delete');
+
+    Route::group(['prefix' => '/{resume}/school'], function() {
+        Route::post('/{school}/add', 'ResumeController@addSchool');
+        Route::post('/{school}/remove', 'ResumeController@removeSchool');
+    });
+
+    Route::group(['prefix' => '/{resume}/work'], function() {
+        Route::post('/{work}/add', 'ResumeController@addWork');
+        Route::post('/{work}/remove', 'ResumeController@removeWork');
+    });
+
+    Route::group(['prefix' => '/{resume}/skill'], function() {
+        Route::post('/{skill}/add', 'ResumeController@addSkill');
+        Route::post('/{skill}/remove', 'ResumeController@removeSkill');
+    });
+
+    Route::group(['prefix' => '/{resume}/reference'], function() {
+        Route::post('/{reference}/add', 'ResumeController@addReference');
+        Route::post('/{reference}/remove', 'ResumeController@removeReference');
+    });
+});
+
+Route::group(['prefix' => 'api/contact'], function() {
+    Route::post('/add', 'ContactController@add');
 });
