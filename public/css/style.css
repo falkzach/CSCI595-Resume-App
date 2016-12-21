@@ -83,3 +83,22 @@ div.resume-page {
 .contain {
   margin: 1em;
 }
+.build-button {
+  float: left;
+  font-size: 15px;
+}
+div.select {
+  text-align: center;
+}
+#name-static {
+  white-space: pre-wrap;
+}
+footer.w3-center.w3-black.w3-padding-16 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}

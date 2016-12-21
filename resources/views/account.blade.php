@@ -165,6 +165,7 @@
 
         //updates values on account page
         updatePage: function(data) {
+          console.log(data);
             account.id = data['user']['id'];
             account.name = data['user']['name'];
             account.email = data['user']['email'];

@@ -17,8 +17,9 @@ class WorkController extends Controller
     {
         $jobs = Auth::user()->jobs;
         return response()->json([
-            'jobs' => $jobs
+            'work' => $jobs
         ]);
+
     }
 
     public function create(Request $request)
