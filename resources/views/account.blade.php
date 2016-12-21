@@ -87,6 +87,13 @@
                 $("#account-info-edit").css('display','initial');
             });
 
+            $(".submit-button").click(function(e){
+                e.preventDefault();
+                account.updateUser();
+                $("#account-info-static").css('display','initial');
+                $("#account-info-edit").css('display','none');
+            });
+
             $(".password-button").click(function(){
                 $("#account-info-static").css('display','none');
                 $("#account-change-password").css('display','initial');
@@ -97,13 +104,6 @@
                 account.changePassword();
                 $("#account-info-static").css('display','initial');
                 $("#account-change-password").css('display','none');
-            });
-
-            $(".submit-button").click(function(e){
-                e.preventDefault();
-                account.updateUser();
-                $("#account-info-static").css('display','initial');
-                $("#account-info-edit").css('display','none');
             });
         },
         getUser: function() {
