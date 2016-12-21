@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Reference;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 
 class ReferenceController extends Controller
 {
@@ -21,9 +21,9 @@ class ReferenceController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $data = Input::all();
+        $data = $request->all();
         $references = Reference::create($data);
         return response()->json([
             'references' => $references
@@ -36,9 +36,9 @@ class ReferenceController extends Controller
         return response()->json(['id' => $reference->id]);
     }
 
-    public function update(Reference $reference)
+    public function update(Request $request, Reference $reference)
     {
-        $data = Input::all();
+        $data = $request->all();
         $reference->update($data);
         return response()->json([
             'reference' => $reference

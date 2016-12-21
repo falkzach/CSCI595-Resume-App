@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Work;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 
 class WorkController extends Controller
 {
@@ -15,16 +15,19 @@ class WorkController extends Controller
 
     public function index()
     {
-        $work = Auth::user()->jobs;
-        return response()->json(['work' => $work,]);
+        $jobs = Auth::user()->jobs;
+        return response()->json([
+            'work' => $jobs
+        ]);
+
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $data = Input::all();
+        $data = $request->all();
         $work = Work::create($data);
         return response()->json([
-            'work' => $work
+            'job' => $work
         ]);
     }
 
@@ -34,12 +37,12 @@ class WorkController extends Controller
         return response()->json(['id' => $work->id]);
     }
 
-    public function update(Work $work)
+    public function update(Request $request, Work $work)
     {
-        $data = Input::all();
+        $data = $request->all();
         $work->update($data);
         return response()->json([
-            'school' => $work
+            'job' => $work
         ]);
     }
 

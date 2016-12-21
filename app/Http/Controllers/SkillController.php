@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Skill;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 
 class SkillController extends Controller
 {
@@ -21,9 +21,9 @@ class SkillController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $data = Input::all();
+        $data = $request->all();
         $skills = Skill::create($data);
         return response()->json([
             'skills' => $skills
@@ -36,9 +36,9 @@ class SkillController extends Controller
         return response()->json(['id' => $skill->id]);
     }
 
-    public function update(Skill $skill)
+    public function update(Request $request, Skill $skill)
     {
-        $data = Input::all();
+        $data = $request->all();
         $skill->update($data);
         return response()->json([
             'skill' => $skill

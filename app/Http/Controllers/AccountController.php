@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Validator;
 
@@ -32,7 +32,7 @@ class AccountController extends Controller
         ]);
 
         $user = Auth::user();
-        $data = Input::all();
+        $data = $request->all();
 
         if($validator->fails())
         {
@@ -70,10 +70,10 @@ class AccountController extends Controller
             ]);
         }
 
-        $data = Input::all();
         $user = Auth::user();
+        $data = $request->all();
 
-        if($user->password !== $data['currentPassword'])
+        if(!Hash::check($data['currentPassword'], $user->password))
         {
             return response()->json([
                 'status' => 'error',
